@@ -40,15 +40,24 @@
     {:menu (menu router (:uri req))
      :content content})))
 
-(defn index [templater router kitten-pictures]
+(defn gallery [templater router kitten-pictures]
+  (fn [req]
+    (page templater router req
+          (hiccup/html
+           [:p.lead "Kitten Pictures"]
+           [:div.container-fluid
+            [:div.row
+             (for [img (img-repo/all-images @kitten-pictures)]
+               [:div.col-md-3
+                [:img.img-responsive.img-rounded {:src img}]])]]))))
+
+(defn index [templater router]
   (fn [req]
     (page templater router req
           (hiccup/html
            [:div
-            [:p.lead
-             [:ul.list-unstyled
-              (for [img (img-repo/all-images @kitten-pictures)]
-                [:li [:img.img-responsive.img-rounded {:src img}]])]]]))))
+            [:h1.cover-heading "Welcome"]
+            [:p.lead [:a {:href "/kitten.html"} "Click here for kitten pics"]]]))))
 
 (defn features [templater router]
   (fn [req]
@@ -88,9 +97,10 @@
   (request-handlers [this]
     ;; Return a map between some keywords and their associated Ring
     ;; handlers
-    {::index (index templater router kitten-pictures)
+    {::index (index templater router)
      ::features (features templater router)
-     ::about (about templater router)})
+     ::about (about templater router)
+     ::as-kitten (gallery templater router kitten-pictures)})
 
   ;; Return a bidi route structure, mapping routes to keywords defined
   ;; above. This additional level of indirection means we can generate
@@ -98,7 +108,8 @@
   (routes [_] ["/" {"index.html" ::index
                     "" (redirect ::index)
                     "features.html" ::features
-                    "about.html" ::about}])
+                    "about.html" ::about
+                    "kitten.html" ::as-kitten}])
 
   ;; A WebService can be 'mounted' underneath a common uri context
   (uri-context [_] ""))
