@@ -40,16 +40,19 @@
     {:menu (menu router (:uri req))
      :content content})))
 
+
 (defn gallery [templater router kitten-pictures]
   (fn [req]
     (page templater router req
-          (hiccup/html
-           [:p.lead "Kitten Pictures"]
-           [:div.container-fluid
-            [:div.row
-             (for [img (img-repo/all-images @kitten-pictures)]
-               [:div.col-md-3
-                [:img.img-responsive.img-rounded {:src img}]])]]))))
+          (let [images (img-repo/all-images @kitten-pictures)
+                col-class (str "col-md-" (quot 12 (count images)))]
+            (hiccup/html
+             [:p.lead "Kitten Pictures"]
+             [:div.container-fluid
+              [:div.row
+               (for [img images]
+                 [:div {:class col-class}
+                  [:img.img-responsive.img-rounded {:src img}]])]])))))
 
 (defn index [templater router]
   (fn [req]
