@@ -18,7 +18,7 @@
 (defn lookup-images [{:keys (subject)}]
   (get {"as-kitten" ["http://localhost:3000/static/gracie3.jpg"
                      "http://localhost:3000/static/gracie.jpg"
-                    ; "http://localhost:3000/static/gracie4.jpg"
+                     "http://localhost:3000/static/gracie4.jpg"
                      "http://localhost:3000/static/gracie2.jpg"]}
        subject []))
 

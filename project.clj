@@ -25,14 +25,7 @@
    [org.webjars/jquery "2.1.0"]
    [prismatic/plumbing "0.2.2"]
    [prismatic/schema "0.2.1"]
-   [ch.qos.logback/logback-classic "1.0.7" :exclusions [org.slf4j/slf4j-api]]
-
-
-   ;; Application
-   [mysql/mysql-connector-java "5.1.6"]
-   [org.clojure/java.jdbc "0.3.5"]
-   [jdbc_components "0.1.0-SNAPSHOT"]
-   ]
+   [ch.qos.logback/logback-classic "1.0.7" :exclusions [org.slf4j/slf4j-api]]]
 
   :main gracie.main
 
