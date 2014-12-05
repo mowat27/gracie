@@ -1,6 +1,12 @@
 # gracie
 
-A Clojure application for ...
+Source code from my talk at Clojure Exchange 2014...
+
+https://skillsmatter.com/conferences/1956-clojure-exchange-2014#program
+
+One of the great things about coming to conferences is seeing ideas you’ve heard about for real. Well, Stuart Sierra’s components and reloaded workflow have been a popular topic for a while now and I’ll use this lightning talk to bring them to life by showing you how we use them to separate concerns and streamline our development workflow.
+
+I’ll also show how we use off the shelf components to make it easy to create a componentised website or add a database and show a few patterns I have found useful for running unit tests real fast and dealing with large volumes of data in development.
 
 ## Usage
 
@@ -34,7 +40,7 @@ Rinse and repeat.
 
 The MIT License (MIT)
 
-Copyright © 2014 
+Copyright © 2014
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
